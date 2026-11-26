@@ -1,0 +1,17 @@
+{
+  "name": "dieguitocoder",
+  "owner": {
+    "name": "DieguitoCoder"
+  },
+  "metadata": {
+    "description": "Marketplace privado de DieguitoCoder: el equipo de agentes de la Oficina Agéntica para Claude Code."
+  },
+  "plugins": [
+    {
+      "name": "oficina",
+      "source": "./plugins/oficina",
+      "description": "Oficina Agéntica: 14 agentes de desarrollo (Atlas, Orion, Clio, Nova...), el manual del equipo, las rutinas de la oficina y un puente MCP a la oficina abierta en tu equipo.",
+      "category": "development"
+    }
+  ]
+}
