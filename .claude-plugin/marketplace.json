@@ -4,7 +4,7 @@
     "name": "DieguitoCoder"
   },
   "metadata": {
-    "description": "Marketplace privado de DieguitoCoder: el equipo de agentes de la Oficina Agéntica para Claude Code."
+    "description": "Marketplace público de DieguitoCoder: el equipo de agentes de la Oficina Agéntica para Claude Code."
   },
   "plugins": [
     {

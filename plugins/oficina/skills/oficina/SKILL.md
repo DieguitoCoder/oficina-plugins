@@ -20,6 +20,12 @@ Request: $ARGUMENTS
   waiting for the owner.
 - `oficina_abrir` (read-only): the local address of the office (`http://127.0.0.1:<port>`).
   Tell the owner to switch to the desktop app window, or open that address on this PC.
+- `oficina_grafo` (read-only): asks the office's knowledge graph of a project —
+  `alcance: codigo` (files, functions, imports), `documentacion` (scope, stories US-*,
+  requirements FR/NFR, decisions, diagrams, meetings, README/docs sections with status
+  and a short summary) or `todo` (both, linked: which files implement a story). The
+  project is the office project of the current folder, else the active one. Consult it
+  before answering specific questions about a project the office knows; cite ids/files.
 - `oficina_delegar` (**side effect**): sends a request to Atlas in the office (build
   mode). Atlas answers with a plan that the owner approves in the office before anything
   runs. Only call it when the owner explicitly asked to hand the work to the office;

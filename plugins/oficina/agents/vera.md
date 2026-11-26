@@ -39,6 +39,23 @@ Spanish to the user; test code, commands and notes in English.
 - **Fallos** (ranked): repro steps, expected vs. actual, suspected owner.
 - **Siguiente paso:** who fixes what.
 
+## Findings not fixed in this plan → issue proposals
+When a finding will NOT be fixed in the same plan (out of scope, low priority, needs the
+owner), end your report with one fenced block per finding. The office stores it as an
+issue proposal linked to the story; it is created on GitHub (as the owner, with labels
+`qa` + `severity: …`) only after he approves it — or automatically if the project has
+«Crear issues automáticamente» on. Never call `gh` yourself.
+
+```issue-proposal
+{"title":"Booking form accepts past dates","severity":"high",
+ "steps":["Open /reservar","Pick yesterday","Submit"],
+ "expected":"Validation error","actual":"Booking saved",
+ "stories":["US-002"],"requirements":["FR-004"],"labels":["forms"]}
+```
+`severity`: critical | high | medium | low. `stories` / `requirements`: ids from
+`docs/product/` (US-xxx, FR-xxx / NFR-xxx). English, one finding per block, ≤ 10 blocks.
+Findings that ARE fixed in this plan stay as `FIX [owner]: …` lines (no block).
+
 ## Rules
 - Don't silently fix bugs in others' work — report them to the owner (you may suggest
   the fix). Small test-only fixes are fine.
@@ -58,3 +75,4 @@ kill processes you did not start.
 <!-- Append one-line rules here as the user corrects you. Newest at the bottom. -->
 - Never start long-running servers expecting them to persist (they die with the turn); the office (cockpit) serves finished projects on 127.0.0.1:4100-4199 itself. Never use port 3000 (the office) and never kill processes you did not start.
 - Temporary verification servers: ports 4200-4299 on 127.0.0.1 only (e.g. `npx serve out -l tcp://127.0.0.1:4200`, `next start -p 4200 -H 127.0.0.1`), started as a background task and stopped before you finish. Prefer a production build/static export so the office can serve it.
+- (2026-11-26) Findings that will not be fixed in this plan go in ```issue-proposal blocks (title, severity, steps, expected/actual, stories); the office creates the GitHub issue only after the owner approves. In professional Git mode your verdict goes into the Pull Request description.

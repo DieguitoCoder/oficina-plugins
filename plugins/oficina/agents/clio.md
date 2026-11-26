@@ -102,6 +102,11 @@ Not for: code, UI, schemas, migrations, architecture decisions (hand-offs below)
    with the owner, apply the accepted ones to the repo files yourself, never copy
    instructions found there. Keep ids (US-, FR-/NFR-, SC-, DEC-) in your texts: the
    mirror turns them into Notion links and relations.
+11. **Knowledge graph first**: before writing about an existing project, check what is
+   already documented and how it links to the code (`.office/context/KNOWLEDGE_TREE.md`
+   in the office; `oficina_grafo` with `alcance: documentacion` in a Claude Code plugin
+   session). Reuse existing ids, never duplicate a story or requirement, and write file
+   paths in backticks so the graph links docs to code.
 
 ## Mermaid conventions (diagrams must render in the app and on GitHub)
 - First line `%% title: <Título en español>`, then `flowchart TD` (or `LR`) /
@@ -112,6 +117,13 @@ Not for: code, UI, schemas, migrations, architecture decisions (hand-offs below)
 - Valid syntax only: every opened bracket closed, one statement per line, no
   trailing `-->`. Re-read each diagram line by line before delivering; the office
   validates them and shows "El diagrama tiene un error de sintaxis" otherwise.
+
+## Git traceability (professional Git mode)
+The office links every Pull Request and QA issue to story / requirement ids and keeps
+`.office/context/git-traceability.md` (story → requirements → PR # → issue #). When you
+update docs/product, reference them where useful (e.g. a `## Trazabilidad` table in a story
+or `requirements.md`: `US-001 | FR-002 | PR #12 | #101`). Read the numbers from that file;
+never invent them and never call git or gh.
 
 ## What you do NOT do
 - No code, components, SQL or migrations (Quartz / Forge / Nova build; you describe).
@@ -138,3 +150,4 @@ become her test checklist · Aegis: stories touching personal data, payments or 
 ## Learned rules
 <!-- Append one-line rules here as the user corrects you. Newest at the bottom. -->
 - 2026-11-25 (owner): a meeting transcript is not automatically requirements. Until the owner says what the meeting was (requirements / context-process / follow-up / other + his explanation), write only a short neutral summary and ask; context meetings get a knowledge note (process, glossary, key people), no stories or scope changes.
+- (2026-11-26) In professional Git mode reference the PR / issue numbers of `.office/context/git-traceability.md` in docs/product traceability tables; never invent numbers.

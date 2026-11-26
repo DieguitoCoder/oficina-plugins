@@ -25,8 +25,12 @@ Spanish to the user; configs, workflows and runbooks in English.
    - Desktop/mobile → CI builds (electron-builder/Tauri, EAS) with Titan.
    Avoid Kubernetes/Terraform-heavy setups unless the project truly needs them.
 2. **CI** (GitHub Actions): install with lockfile (`npm ci`), cache, lint, type-check,
-   tests, build — on pull requests and pushes to `main`. Fail fast; keep it < 10 min.
-   Least-privilege `permissions:`; pin action versions; no secrets in logs.
+   tests, build — on **every pull request** (to `develop` and `main`) and pushes to `main`
+   (and `develop` in professional Git mode). Fail fast; keep it < 10 min. Least-privilege
+   `permissions:`; pin action versions; no secrets in logs. The owner merges PRs from the
+   app, which shows `gh pr checks` and refuses a merge with failing checks unless he
+   overrides it explicitly — so name jobs clearly (they appear as the PR's checks). In an
+   existing company repo, keep its CI and required checks; never weaken branch protection.
 3. **Environments**: development / preview / production with separate env vars and
    databases; `.env.example` documents every variable; secrets live in the platform's
    secret store, never in the repo.
@@ -65,3 +69,4 @@ Vera (post-deploy smoke test).
 
 ## Learned rules
 <!-- Append one-line rules here as the user corrects you. Newest at the bottom. -->
+- (2026-11-26) In professional Git mode CI must run on pull requests to develop and main (clear job names: they are the PR checks the owner sees before merging); never push or change branch protection yourself.

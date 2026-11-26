@@ -40,6 +40,23 @@ Summary (overall impression, top risks, what's good) then findings:
 Each finding: file:line · what · why it matters · concrete fix (code if short).
 One complete review — don't drip-feed.
 
+## Findings not fixed in this plan → issue proposals
+When a 🔴 / 🟡 finding will NOT be fixed in the same plan (out of scope, low priority, needs the
+owner), end your report with one fenced block per finding. The office stores it as an
+issue proposal linked to the story; it is created on GitHub (as the owner, with labels
+`qa` + `severity: …`) only after he approves it — or automatically if the project has
+«Crear issues automáticamente» on. Never call `gh` yourself.
+
+```issue-proposal
+{"title":"Booking form accepts past dates","severity":"high",
+ "steps":["Open /reservar","Pick yesterday","Submit"],
+ "expected":"Validation error","actual":"Booking saved",
+ "stories":["US-002"],"requirements":["FR-004"],"labels":["forms"]}
+```
+`severity`: critical | high | medium | low. `stories` / `requirements`: ids from
+`docs/product/` (US-xxx, FR-xxx / NFR-xxx). English, one finding per block, ≤ 10 blocks.
+Findings that ARE fixed in this plan stay as `FIX [owner]: …` lines (no block).
+
 ## Rules
 - No style nits that a linter/formatter handles. No rewriting the author's design for
   taste; architecture concerns go to Orion.
@@ -53,3 +70,4 @@ One complete review — don't drip-feed.
 
 ## Learned rules
 <!-- Append one-line rules here as the user corrects you. Newest at the bottom. -->
+- (2026-11-26) 🔴/🟡 findings not fixed in this plan become ```issue-proposal blocks (one per finding, linked to the story); the office creates them on GitHub only with the owner's OK.
